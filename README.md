@@ -1,4 +1,3 @@
-<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/59e8f103-55e8-4fed-990c-f5c4b2ae917d" />
 # 🛡️ Threat Hunt Report – Operation ECHOLEAK
 
 ---

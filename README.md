@@ -33,30 +33,30 @@ On 20 September 2026, an external email delivered a weaponised Word document (`Q
 - [🧠 Hunt Overview](#-hunt-overview)
 - [🕒 Attack Timeline](#-attack-timeline)
 - [🧬 MITRE ATLAS / ATT&CK Summary](#-mitre-atlas--attck-summary)
-- [🔍 Flag Analysis](#-flag-analysis)
+- [🔍 Question Analysis](#-question-analysis)
   - **Section 1: Delivery**
-    - [🚩 Flag 1: Sender Address](#-flag-1)
-    - [🚩 Flag 2: Poisoned Document](#-flag-2)
-    - [🚩 Flag 3: Time Gap](#-flag-3)
+    - [🚩 Q1: Sender Address](#-s1-q1)
+    - [🚩 Q2: Poisoned Document](#-s1-q2)
+    - [🚩 Q3: Time Gap](#-s1-q3)
   - **Section 2: Copilot Hijack**
-    - [🚩 Flag 4: User Prompt](#-flag-4)
-    - [🚩 Flag 5: Anomalous Tool Calls](#-flag-5)
-    - [🚩 Flag 6: ATLAS Technique](#-flag-6)
+    - [🚩 Q1: User Prompt](#-s2-q1)
+    - [🚩 Q2: Anomalous Tool Calls](#-s2-q2)
+    - [🚩 Q3: ATLAS Technique](#-s2-q3)
   - **Section 3: Data Extraction**
-    - [🚩 Flag 7: Sensitive File Count](#-flag-7)
-    - [🚩 Flag 8: Exfiltration Domain](#-flag-8)
-    - [🚩 Flag 9: Exfiltration Mechanism](#-flag-9)
+    - [🚩 Q1: Sensitive File Count](#-s3-q1)
+    - [🚩 Q2: Exfiltration Domain](#-s3-q2)
+    - [🚩 Q3: Exfiltration Mechanism](#-s3-q3)
   - **Section 4: Blast Radius**
-    - [🚩 Flag 10: Accessed Files](#-flag-10)
-    - [🚩 Flag 11: Data Content Visibility](#-flag-11)
-    - [🚩 Flag 12: System Prompt Exposure](#-flag-12)
+    - [🚩 Q1: Accessed Files](#-s4-q1)
+    - [🚩 Q2: Data Content Visibility](#-s4-q2)
+    - [🚩 Q3: System Prompt Exposure](#-s4-q3)
   - **Section 5: Normal or Anomalous**
-    - [🚩 Flag 13: Copilot Behaviour – Normal or Hijacked](#-flag-13)
-    - [🚩 Flag 14: Access Pattern Analysis](#-flag-14)
+    - [🚩 Q1: Copilot Behaviour – Normal or Hijacked](#-s5-q1)
+    - [🚩 Q2: Access Pattern Analysis](#-s5-q2)
   - **Section 6: Impact and Classification**
-    - [🚩 Flag 15: SearchLeak Scope](#-flag-15)
-    - [🚩 Flag 16: Total File Count](#-flag-16)
-    - [🚩 Flag 17: Incident Classification](#-flag-17)
+    - [🚩 Q1: SearchLeak Scope](#-s6-q1)
+    - [🚩 Q2: Total File Count](#-s6-q2)
+    - [🚩 Q3: Incident Classification](#-s6-q3)
 - [🚨 Detection Gaps & Recommendations](#-detection-gaps--recommendations)
 - [🧾 Final Assessment](#-final-assessment)
 - [📎 Analyst Notes](#-analyst-notes)
@@ -99,38 +99,38 @@ This hunt matters because the main detection signal is behaviour inside the AI a
 
 ## 🧬 MITRE ATLAS / ATT&CK Summary
 
-| Flag | Technique Category | MITRE ID | Priority |
-|-----:|-------------------|----------|----------|
-| 1 | Initial Access – Phishing: Spearphishing Attachment | T1566.001 | High |
-| 2 | Initial Access – Poisoned document as injection carrier | T1566.001 / AML.T0051.001 | High |
-| 3 | Execution – User-triggered (dormant payload) | T1204.002 | Medium |
-| 4 | Execution – Benign user prompt triggers injection | AML.T0051.001 | High |
-| 5 | Discovery / Collection – LLM plugin abuse (Graph tools), SharePoint data | AML.T0053 / T1213.002 | Critical |
-| 6 | LLM Prompt Injection | AML.T0051 | Critical |
-| 7 | Collection – Data from Information Repositories | T1213.002 | High |
-| 8 | Exfiltration – LLM Data Leakage via web service | AML.T0057 / T1567 | Critical |
-| 9 | Exfiltration – Markdown image rendering (zero-click) | AML.T0057 / T1567 | Critical |
-| 10 | Collection – Data from Information Repositories: SharePoint | T1213.002 | High |
-| 11 | Visibility limitation (metadata-only audit logs) | N/A | Medium |
-| 12 | LLM Meta Prompt / System Prompt Extraction (CoSnitch) | AML.T0056 | High |
-| 13 | Baseline analysis – hijacked vs normal session | N/A | Medium |
-| 14 | Behavioural detection pattern | N/A | Medium |
-| 15 | Discovery – File and Directory Discovery (SearchLeak) | T1083 / T1213.002 | High |
-| 16 | Impact scope – total exposure | N/A | High |
-| 17 | Classification – External input manipulation (indirect prompt injection) | AML.T0051.001 | Critical |
+| Question | Technique Category | MITRE ID | Priority |
+|:--|-------------------|----------|----------|
+| S1 Q1 | Initial Access – Phishing: Spearphishing Attachment | T1566.001 | High |
+| S1 Q2 | Initial Access – Poisoned document as injection carrier | T1566.001 / AML.T0051.001 | High |
+| S1 Q3 | Execution – User-triggered (dormant payload) | T1204.002 | Medium |
+| S2 Q1 | Execution – Benign user prompt triggers injection | AML.T0051.001 | High |
+| S2 Q2 | Discovery / Collection – LLM plugin abuse (Graph tools), SharePoint data | AML.T0053 / T1213.002 | Critical |
+| S2 Q3 | LLM Prompt Injection | AML.T0051 | Critical |
+| S3 Q1 | Collection – Data from Information Repositories | T1213.002 | High |
+| S3 Q2 | Exfiltration – LLM Data Leakage via web service | AML.T0057 / T1567 | Critical |
+| S3 Q3 | Exfiltration – Markdown image rendering (zero-click) | AML.T0057 / T1567 | Critical |
+| S4 Q1 | Collection – Data from Information Repositories: SharePoint | T1213.002 | High |
+| S4 Q2 | Visibility limitation (metadata-only audit logs) | N/A | Medium |
+| S4 Q3 | LLM Meta Prompt / System Prompt Extraction (CoSnitch) | AML.T0056 | High |
+| S5 Q1 | Baseline analysis – hijacked vs normal session | N/A | Medium |
+| S5 Q2 | Behavioural detection pattern | N/A | Medium |
+| S6 Q1 | Discovery – File and Directory Discovery (SearchLeak) | T1083 / T1213.002 | High |
+| S6 Q2 | Impact scope – total exposure | N/A | High |
+| S6 Q3 | Classification – External input manipulation (indirect prompt injection) | AML.T0051.001 | Critical |
 
 ---
 
-## 🔍 Flag Analysis
+## 🔍 Question Analysis
 
-_All flags below are collapsible for readability._
+_All questions below are collapsible for readability._
 
 ---
 
 ## Section 1: Delivery
 
 <details>
-<summary id="-flag-1">🚩 <strong>Flag 1: Sender Address</strong></summary>
+<summary id="-s1-q1">🚩 <strong>Q1: Sender Address</strong></summary>
 
 ### 🎯 Objective
 Identify the external email address that delivered the document preceding the anomalous file access.
@@ -167,7 +167,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 1 – Sender address]<img width="1526" height="575" alt="TH23_S1_Q1" src="https://github.com/user-attachments/assets/f763afb8-c12e-4145-bc2e-107a35081f7c" />
+![S1 Q1 – Sender address]()
 
 ### 🛠️ Detection Recommendation
 
@@ -179,7 +179,7 @@ Correlate external `MessageReceived` events carrying Office attachments with any
 ---
 
 <details>
-<summary id="-flag-2">🚩 <strong>Flag 2: Poisoned Document</strong></summary>
+<summary id="-s1-q2">🚩 <strong>Q2: Poisoned Document</strong></summary>
 
 ### 🎯 Objective
 Identify the attachment that carried the hidden prompt-injection instructions.
@@ -201,7 +201,7 @@ The document is the injection carrier. It looked like a legitimate market review
 
 ### 🔧 KQL Query Used
 ```kql
-// Attachment from the delivery email (same query as Flag 1)
+// Attachment from the delivery email (same query as S1 Q1)
 OfficeActivity_CL
 | where RunId == "el--17-20260920"
 | where TimeGenerated between (datetime(2026-09-20 09:00) .. datetime(2026-09-20 10:42))
@@ -221,7 +221,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 2 – Poisoned document]<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/3fb99a19-73b6-4e2a-96d1-6ce699b859a9" />
+![S1 Q2 – Poisoned document](images/s1-q2-poisoned-document.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -233,7 +233,7 @@ Scan inbound Office attachments for hidden text (white-on-white, zero-size fonts
 ---
 
 <details>
-<summary id="-flag-3">🚩 <strong>Flag 3: Time Gap</strong></summary>
+<summary id="-s1-q3">🚩 <strong>Q3: Time Gap</strong></summary>
 
 ### 🎯 Objective
 Measure the gap between email delivery and first interaction with the document, and interpret what it says about the attack model.
@@ -272,8 +272,7 @@ print Delivery = delivery, FirstOpen = firstOpen, Gap = firstOpen - delivery
 ```
 
 ### 🖼️ Screenshot
-![Flag 3 – Time gap]<img width="913" height="666" alt="TH23_S1_Q3" src="https://github.com/user-attachments/assets/49b25fa7-4c6c-49a4-a243-70c5b22e92b6" />
-
+![S1 Q3 – Time gap](images/s1-q3-time-gap.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -287,7 +286,7 @@ Don't rely on time-proximity correlation between delivery and impact. AI-mediate
 ## Section 2: Copilot Hijack
 
 <details>
-<summary id="-flag-4">🚩 <strong>Flag 4: User Prompt</strong></summary>
+<summary id="-s2-q1">🚩 <strong>Q1: User Prompt</strong></summary>
 
 ### 🎯 Objective
 Identify what Emily asked Copilot to do with the document.
@@ -330,7 +329,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 4 – User prompt](images/flag-04-user-prompt.png)
+![S2 Q1 – User prompt](images/s2-q1-user-prompt.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -342,7 +341,7 @@ Compare the user's prompt intent with the tools Copilot calls next. A summarisat
 ---
 
 <details>
-<summary id="-flag-5">🚩 <strong>Flag 5: Anomalous Tool Calls</strong></summary>
+<summary id="-s2-q2">🚩 <strong>Q2: Anomalous Tool Calls</strong></summary>
 
 ### 🎯 Objective
 Identify the tool calls that go beyond what document summarisation requires.
@@ -401,7 +400,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 5 – Anomalous tool calls](images/flag-05-anomalous-tool-calls.png)
+![S2 Q2 – Anomalous tool calls](images/s2-q2-anomalous-tool-calls.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -413,7 +412,7 @@ Alert on any Copilot session where `Graph.SearchFiles` / `Graph.ReadFile` target
 ---
 
 <details>
-<summary id="-flag-6">🚩 <strong>Flag 6: ATLAS Technique</strong></summary>
+<summary id="-s2-q3">🚩 <strong>Q3: ATLAS Technique</strong></summary>
 
 ### 🎯 Objective
 Identify the MITRE ATLAS technique describing how Copilot was made to follow the hidden instructions.
@@ -444,7 +443,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 6 – Prompt followed by injected tool calls](images/flag-06-atlas-prompt-injection.png)
+![S2 Q3 – Prompt followed by injected tool calls](images/s2-q3-atlas-prompt-injection.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -458,7 +457,7 @@ Enable Microsoft Prompt Shields / XPIA classifiers for Copilot, and hunt for ses
 ## Section 3: Data Extraction
 
 <details>
-<summary id="-flag-7">🚩 <strong>Flag 7: Sensitive File Count</strong></summary>
+<summary id="-s3-q1">🚩 <strong>Q1: Sensitive File Count</strong></summary>
 
 ### 🎯 Objective
 Count the sensitive files Copilot accessed that Emily had never opened before (initial extraction).
@@ -479,7 +478,7 @@ All five `FileAccessed` events in the 10:42–10:43 window, not counting the poi
 | 10:42:55.5 | Copilot System Configuration - Cormorant.json | 0 |
 
 ### 💡 Why it matters
-Five never-before-opened files in eight seconds at machine cadence (2.0 s intervals) is what the analytics rule caught. The later SearchLeak wave (Flags 15–16) shows the real exposure was larger.
+Five never-before-opened files in eight seconds at machine cadence (2.0 s intervals) is what the analytics rule caught. The later SearchLeak wave (S6 Q1–Q2) shows the real exposure was larger.
 
 ### 🔧 KQL Query Used
 ```kql
@@ -523,7 +522,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 7 – Sensitive file count](images/flag-07-sensitive-file-count.png)
+![S3 Q1 – Sensitive file count](images/s3-q1-sensitive-file-count.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -535,7 +534,7 @@ Baseline each user's file-access history and alert on bursts of first-time acces
 ---
 
 <details>
-<summary id="-flag-8">🚩 <strong>Flag 8: Exfiltration Domain</strong></summary>
+<summary id="-s3-q2">🚩 <strong>Q2: Exfiltration Domain</strong></summary>
 
 ### 🎯 Objective
 Identify the exfiltration domain and where it appears in telemetry.
@@ -583,7 +582,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 8 – Exfiltration domain in CopilotResponse](images/flag-08-exfiltration-domain.png)
+![S3 Q2 – Exfiltration domain in CopilotResponse](images/s3-q2-exfiltration-domain.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -595,7 +594,7 @@ Run a scheduled analytic over `CopilotResponse` for markdown image or link synta
 ---
 
 <details>
-<summary id="-flag-9">🚩 <strong>Flag 9: Exfiltration Mechanism</strong></summary>
+<summary id="-s3-q3">🚩 <strong>Q3: Exfiltration Mechanism</strong></summary>
 
 ### 🎯 Objective
 Describe how the data left the organisation and why endpoint network monitoring misses it.
@@ -632,7 +631,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 9 – Markdown image elements in response](images/flag-08-exfiltration-domain.png)
+![S3 Q3 – Markdown image elements in response](images/s3-q2-exfiltration-domain.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -646,7 +645,7 @@ Restrict Copilot response rendering of external images (CSP / allow-list), and a
 ## Section 4: Blast Radius
 
 <details>
-<summary id="-flag-10">🚩 <strong>Flag 10: Accessed Files</strong></summary>
+<summary id="-s4-q1">🚩 <strong>Q1: Accessed Files</strong></summary>
 
 ### 🎯 Objective
 List the sensitive files Copilot accessed on the attacker's behalf, from OfficeActivity_CL.
@@ -684,7 +683,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 10 – Accessed files](images/flag-10-accessed-files.png)
+![S4 Q1 – Accessed files](images/s4-q1-accessed-files.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -696,7 +695,7 @@ Apply sensitivity labels and restricted SharePoint search so Copilot can't groun
 ---
 
 <details>
-<summary id="-flag-11">🚩 <strong>Flag 11: Data Content Visibility</strong></summary>
+<summary id="-s4-q2">🚩 <strong>Q2: Data Content Visibility</strong></summary>
 
 ### 🎯 Objective
 Determine whether the audit logs reveal the exact content that was exfiltrated. *(Unanswerable by design.)*
@@ -725,7 +724,7 @@ CopilotAudit_CL   | getschema
 ```
 
 ### 🖼️ Screenshot
-![Flag 11 – Response shows URLs, not file content](images/flag-08-exfiltration-domain.png)
+![S4 Q2 – Response shows URLs, not file content](images/s3-q2-exfiltration-domain.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -737,7 +736,7 @@ Forward secure web gateway / proxy logs with full URL capture into Sentinel so r
 ---
 
 <details>
-<summary id="-flag-12">🚩 <strong>Flag 12: System Prompt Exposure</strong></summary>
+<summary id="-s4-q3">🚩 <strong>Q3: System Prompt Exposure</strong></summary>
 
 ### 🎯 Objective
 Identify what the CoSnitch pattern leaked beyond user files and why it matters.
@@ -772,7 +771,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 12 – System prompt exposure](images/flag-12-system-prompt-exposure.png)
+![S4 Q3 – System prompt exposure](images/s4-q3-system-prompt-exposure.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -786,7 +785,7 @@ Keep Copilot configuration artefacts out of indexed SharePoint. Alert on any Cop
 ## Section 5: Normal or Anomalous
 
 <details>
-<summary id="-flag-13">🚩 <strong>Flag 13: Copilot Behaviour – Normal or Hijacked</strong></summary>
+<summary id="-s5-q1">🚩 <strong>Q1: Copilot Behaviour – Normal or Hijacked</strong></summary>
 
 ### 🎯 Objective
 Test the manager's claim that Copilot routinely accesses files during summarisation.
@@ -821,7 +820,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 13 – Session baseline comparison](images/flag-13-session-baseline.png)
+![S5 Q1 – Session baseline comparison](images/s5-q1-session-baseline.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -833,7 +832,7 @@ Use this per-session summary as a scheduled analytic. Any session with `ToolCall
 ---
 
 <details>
-<summary id="-flag-14">🚩 <strong>Flag 14: Access Pattern Analysis</strong></summary>
+<summary id="-s5-q2">🚩 <strong>Q2: Access Pattern Analysis</strong></summary>
 
 ### 🎯 Objective
 Cite at least three specific differences between the hijacked session and normal Copilot usage.
@@ -855,7 +854,7 @@ No single axis is conclusive on its own, but together they form a reliable detec
 
 ### 🔧 KQL Query Used
 ```kql
-// Tool calls & external URLs per session (see Flag 13)
+// Tool calls & external URLs per session (see S5 Q1)
 CopilotAudit_CL
 | where RunId == "el--17-20260920"
 | summarize ToolCalls = countif(InteractionType in ("ToolCall","Search")),
@@ -874,7 +873,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 14 – Session comparison](images/flag-13-session-baseline.png)
+![S5 Q2 – Session comparison](images/s5-q1-session-baseline.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -888,7 +887,7 @@ Build a multi-signal score from tool calls, first-time access, burst cadence and
 ## Section 6: Impact and Classification
 
 <details>
-<summary id="-flag-15">🚩 <strong>Flag 15: SearchLeak Scope</strong></summary>
+<summary id="-s6-q1">🚩 <strong>Q1: SearchLeak Scope</strong></summary>
 
 ### 🎯 Objective
 Quantify the files reached through Copilot's search capabilities after the initial extraction, and the keywords that drove the searches.
@@ -926,7 +925,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 15 – SearchLeak searches](images/flag-05-anomalous-tool-calls.png)
+![S6 Q1 – SearchLeak searches](images/s2-q2-anomalous-tool-calls.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -938,13 +937,13 @@ Alert on Copilot sessions issuing several `Graph.SearchFiles` calls with classif
 ---
 
 <details>
-<summary id="-flag-16">🚩 <strong>Flag 16: Total File Count</strong></summary>
+<summary id="-s6-q2">🚩 <strong>Q2: Total File Count</strong></summary>
 
 ### 🎯 Objective
 Sum the sensitive files exposed across the whole incident.
 
 ### 📌 Finding
-**Answer:** **13** = 5 (initial extraction, Flag 7) + 8 (SearchLeak, Flag 15)
+**Answer:** **13** = 5 (initial extraction, S3 Q1) + 8 (SearchLeak, S6 Q1)
 
 ### 🔍 Evidence
 
@@ -972,7 +971,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 16 – Initial extraction count](images/flag-07-sensitive-file-count.png)
+![S6 Q2 – Initial extraction count](images/s3-q1-sensitive-file-count.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -984,7 +983,7 @@ Scope impact from Copilot response payloads as well as FileAccessed events. Sear
 ---
 
 <details>
-<summary id="-flag-17">🚩 <strong>Flag 17: Incident Classification</strong></summary>
+<summary id="-s6-q3">🚩 <strong>Q3: Incident Classification</strong></summary>
 
 ### 🎯 Objective
 Classify the incident and rule out the two alternative hypotheses with evidence.
@@ -1024,7 +1023,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 17 – Entra ID sign-ins](images/flag-17-entra-signins.png)
+![S6 Q3 – Entra ID sign-ins](images/s6-q3-entra-signins.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -1039,7 +1038,7 @@ For AI-assistant incidents, always test all three hypotheses (identity, configur
 
 ### Observed Gaps
 - **Analytics rule undercounted exposure:** the rule caught the 5-file burst but missed the irregularly paced SearchLeak wave and the 5 files exposed through search results only (13 total).
-- **No content visibility:** OfficeActivity_CL and CopilotAudit_CL log metadata only. What actually left the tenant can't be confirmed (Flag 11).
+- **No content visibility:** OfficeActivity_CL and CopilotAudit_CL log metadata only. What actually left the tenant can't be confirmed (S4 Q2).
 - **Exfiltration invisible to network/endpoint controls:** rendered markdown images look like routine HTTPS image loads from a trusted client.
 - **Incomplete tool-call logging:** the 10:44:15 second access to `Copilot System Configuration - Cormorant.json` has no matching `ToolCall` event in CopilotAudit_CL, even though it precedes the 10:44:19 CoSnitch response.
 - **Over-permissive Copilot scope:** the leaked config shows `access_scope: Global Reader`, letting an analyst's Copilot reach Executive, HR and IT content.
@@ -1076,7 +1075,7 @@ The attacker's sophistication lies in chaining three known vulnerability classes
 - Evidence reproducible via KQL in `LAW-HuntPractice` (`RunId == "el--17-20260920"`)
 - Techniques mapped to MITRE ATLAS (AI-specific) and MITRE ATT&CK
 - Base64 payloads in `d=` parameters decoded during analysis to identify each exfiltrated item
-- Flag 11 is unanswerable by design. The answer names the visibility limitation
+- S4 Q2 is unanswerable by design. The answer names the visibility limitation
 - Cross-referenced against public research on CVE-2025-32711 by Aim Security and Unit 42 (Palo Alto Networks)
 
 ---

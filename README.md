@@ -329,7 +329,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![S2 Q1 – User prompt](images/s2-q1-user-prompt.png)
+![S2 Q1 – User prompt]<img width="1477" height="714" alt="TH23_S2_Q1" src="https://github.com/user-attachments/assets/da773e42-278d-4a7a-a186-79b4f21ea171" />
 
 ### 🛠️ Detection Recommendation
 
@@ -400,7 +400,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![S2 Q2 – Anomalous tool calls](images/s2-q2-anomalous-tool-calls.png)
+![S2 Q2 – Anomalous tool calls]<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/083ae2f4-7604-4df6-bdf7-91eb4a3c0c68" />
 
 ### 🛠️ Detection Recommendation
 
@@ -443,7 +443,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![S2 Q3 – Prompt followed by injected tool calls](images/s2-q3-atlas-prompt-injection.png)
+![S2 Q3 – Prompt followed by injected tool calls]<img width="913" height="666" alt="TH23_S1_Q3" src="https://github.com/user-attachments/assets/08b4504b-9c03-494f-be45-b406d894ea6c" />
 
 ### 🛠️ Detection Recommendation
 

@@ -1,3 +1,4 @@
+<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/59e8f103-55e8-4fed-990c-f5c4b2ae917d" />
 # 🛡️ Threat Hunt Report – Operation ECHOLEAK
 
 ---
@@ -221,7 +222,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 2 – Poisoned document](images/flag-02-poisoned-document.png)
+![Flag 2 – Poisoned document]<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/3fb99a19-73b6-4e2a-96d1-6ce699b859a9" />
 
 ### 🛠️ Detection Recommendation
 
@@ -272,7 +273,8 @@ print Delivery = delivery, FirstOpen = firstOpen, Gap = firstOpen - delivery
 ```
 
 ### 🖼️ Screenshot
-![Flag 3 – Time gap](images/flag-03-time-gap.png)
+![Flag 3 – Time gap]<img width="913" height="666" alt="TH23_S1_Q3" src="https://github.com/user-attachments/assets/49b25fa7-4c6c-49a4-a243-70c5b22e92b6" />
+
 
 ### 🛠️ Detection Recommendation
 

@@ -167,7 +167,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![S1 Q1 – Sender address]()
+![S1 Q1 – Sender address]<img width="1526" height="575" alt="TH23_S1_Q1" src="https://github.com/user-attachments/assets/00c95611-50f1-4fa1-8072-cd2b0817d492" />
 
 ### 🛠️ Detection Recommendation
 

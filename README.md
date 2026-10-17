@@ -221,7 +221,8 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![S1 Q2 – Poisoned document]<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/716fe26b-77aa-4737-955f-1565c5bf8c3e" />
+![S1 Q2 – Poisoned document]<img width="1369" height="581" alt="TH23_S2_Q2" src="https://github.com/user-attachments/assets/c9c9d221-d0a6-4ac8-97c9-f3890ce8726a" />
+
 
 ### 🛠️ Detection Recommendation
 

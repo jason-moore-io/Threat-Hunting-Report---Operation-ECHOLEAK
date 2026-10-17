@@ -167,8 +167,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![Flag 1 – Sender address](<img width="1526" height="575" alt="TH23_S1_Q1" src="https://github.com/user-attachments/assets/f763afb8-c12e-4145-bc2e-107a35081f7c" />
-)
+![Flag 1 – Sender address]<img width="1526" height="575" alt="TH23_S1_Q1" src="https://github.com/user-attachments/assets/f763afb8-c12e-4145-bc2e-107a35081f7c" />
 
 ### 🛠️ Detection Recommendation
 

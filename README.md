@@ -401,7 +401,8 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![S2 Q2 – Anomalous tool calls]<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/083ae2f4-7604-4df6-bdf7-91eb4a3c0c68" />
+![S2 Q2 – Anomalous tool calls]<img width="1369" height="581" alt="TH23_S2_Q2" src="https://github.com/user-attachments/assets/271f0d9b-cb6a-47ab-b3ec-0970b5b8396e" />
+
 
 ### 🛠️ Detection Recommendation
 
@@ -442,9 +443,6 @@ CopilotAudit_CL
 | project TimeGenerated, InteractionType, UserPrompt, ToolName, ToolParameters
 | order by TimeGenerated asc
 ```
-
-### 🖼️ Screenshot
-![S2 Q3 – Prompt followed by injected tool calls]<img width="913" height="666" alt="TH23_S1_Q3" src="https://github.com/user-attachments/assets/08b4504b-9c03-494f-be45-b406d894ea6c" />
 
 ### 🛠️ Detection Recommendation
 

@@ -221,7 +221,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![S1 Q2 – Poisoned document](images/s1-q2-poisoned-document.png)
+![S1 Q2 – Poisoned document]<img width="1204" height="491" alt="TH23_S1_Q2" src="https://github.com/user-attachments/assets/716fe26b-77aa-4737-955f-1565c5bf8c3e" />
 
 ### 🛠️ Detection Recommendation
 
@@ -272,7 +272,7 @@ print Delivery = delivery, FirstOpen = firstOpen, Gap = firstOpen - delivery
 ```
 
 ### 🖼️ Screenshot
-![S1 Q3 – Time gap](images/s1-q3-time-gap.png)
+![S1 Q3 – Time gap]<img width="913" height="666" alt="TH23_S1_Q3" src="https://github.com/user-attachments/assets/95371ce0-03c1-47c8-8273-7c701cfcb510" />
 
 ### 🛠️ Detection Recommendation
 

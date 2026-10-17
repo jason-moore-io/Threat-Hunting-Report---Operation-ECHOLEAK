@@ -521,7 +521,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![S3 Q1 – Sensitive file count](images/s3-q1-sensitive-file-count.png)
+![S3 Q1 – Sensitive file count]<img width="568" height="412" alt="TH23_S3_Q1" src="https://github.com/user-attachments/assets/5ee7b1e1-2765-4813-abe5-8ef9fa53cfa1" />
 
 ### 🛠️ Detection Recommendation
 
@@ -581,7 +581,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![S3 Q2 – Exfiltration domain in CopilotResponse](images/s3-q2-exfiltration-domain.png)
+![S3 Q2 – Exfiltration domain in CopilotResponse]<img width="1488" height="707" alt="TH23_S3_Q2" src="https://github.com/user-attachments/assets/987dab3d-a33f-4783-95da-9ce32b23196e" />
 
 ### 🛠️ Detection Recommendation
 
@@ -628,9 +628,6 @@ CopilotAudit_CL
 | project TimeGenerated, SessionId, Domain, Payload, Image
 | order by TimeGenerated asc
 ```
-
-### 🖼️ Screenshot
-![S3 Q3 – Markdown image elements in response](images/s3-q2-exfiltration-domain.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -682,7 +679,7 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![S4 Q1 – Accessed files](images/s4-q1-accessed-files.png)
+![S4 Q1 – Accessed files]<img width="1092" height="529" alt="TH23_S4_Q1" src="https://github.com/user-attachments/assets/7b2c6f47-20d7-491f-9ede-20ba53a37f32" />
 
 ### 🛠️ Detection Recommendation
 
@@ -721,9 +718,6 @@ Breach-notification scope (client data, salaries, M&A) can't be confirmed from t
 OfficeActivity_CL | getschema
 CopilotAudit_CL   | getschema
 ```
-
-### 🖼️ Screenshot
-![S4 Q2 – Response shows URLs, not file content](images/s3-q2-exfiltration-domain.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -770,7 +764,7 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![S4 Q3 – System prompt exposure](images/s4-q3-system-prompt-exposure.png)
+![S4 Q3 – System prompt exposure]<img width="1527" height="730" alt="TH23_S4_Q3" src="https://github.com/user-attachments/assets/9529545f-411b-42d3-b56e-bfcb9404a6c1" />
 
 ### 🛠️ Detection Recommendation
 
@@ -819,7 +813,8 @@ CopilotAudit_CL
 ```
 
 ### 🖼️ Screenshot
-![S5 Q1 – Session baseline comparison](images/s5-q1-session-baseline.png)
+![S5 Q1 – Session baseline comparison]<img width="1122" height="742" alt="TH23_S5_Q1" src="https://github.com/user-attachments/assets/89b2ef88-ac0d-4913-862d-aca442fc2cf3" />
+
 
 ### 🛠️ Detection Recommendation
 
@@ -871,9 +866,6 @@ CopilotAudit_CL
 | project TimeGenerated, DeltaSec, ToolParameters
 ```
 
-### 🖼️ Screenshot
-![S5 Q2 – Session comparison](images/s5-q1-session-baseline.png)
-
 ### 🛠️ Detection Recommendation
 
 **Hunting Tip:**
@@ -923,9 +915,6 @@ CopilotAudit_CL
 | order by TimeGenerated asc
 ```
 
-### 🖼️ Screenshot
-![S6 Q1 – SearchLeak searches](images/s2-q2-anomalous-tool-calls.png)
-
 ### 🛠️ Detection Recommendation
 
 **Hunting Tip:**
@@ -968,9 +957,6 @@ CopilotAudit_CL
 | where Payload has "."   // file names only (excludes system_prompt label)
 | summarize Files = dcount(Payload)
 ```
-
-### 🖼️ Screenshot
-![S6 Q2 – Initial extraction count](images/s3-q1-sensitive-file-count.png)
 
 ### 🛠️ Detection Recommendation
 
@@ -1022,7 +1008,8 @@ OfficeActivity_CL
 ```
 
 ### 🖼️ Screenshot
-![S6 Q3 – Entra ID sign-ins](images/s6-q3-entra-signins.png)
+![S6 Q3 – Entra ID sign-ins]<img width="960" height="726" alt="TH23_S6_Q3a" src="https://github.com/user-attachments/assets/094a3010-6d11-45c0-b584-606e851f5600" /><img width="1421" height="681" alt="TH23_S6_Q3b" src="https://github.com/user-attachments/assets/50b4c010-2e6e-4689-9918-4c0159592107" />
+
 
 ### 🛠️ Detection Recommendation
 

@@ -201,23 +201,12 @@ The document is the injection carrier. It looked like a legitimate market review
 
 ### 🔧 KQL Query Used
 ```kql
-// Attachment from the delivery email (same query as S1 Q1)
-OfficeActivity_CL
-| where RunId == "el--17-20260920"
-| where TimeGenerated between (datetime(2026-09-20 09:00) .. datetime(2026-09-20 10:42))
+CopilotAudit_CL
+| where RunId == "cl--17-20260920"
 | where UserId =~ "emily.chen@cormorantcapital.com"
-| where Operation == "MessageReceived"
-| where SenderAddress !endswith "@cormorantcapital.com"
-| project TimeGenerated, SenderAddress, Subject, AttachmentNames, OfficeObjectId
-| order by TimeGenerated asc
-
-// Corroboration – subsequent open of the attachment
-OfficeActivity_CL
-| where RunId == "el--17-20260920"
-| where UserId =~ "emily.chen@cormorantcapital.com"
-| where OfficeObjectId has "Q3-2026-Global-Markets-Review"
-| project TimeGenerated, Operation, OfficeWorkload, OfficeObjectId
-| order by TimeGenerated asc
+| where InteractionType  == "ToolCall"
+| where TimeGenerated between (datetime(2026-09-20T10:42:30Z) .. datetime(2026-09-20T10:4330Z))
+|project TimeGenerated, ToolName, ToolParameters, DataSourcesAccessed
 ```
 
 ### 🖼️ Screenshot

@@ -603,7 +603,8 @@ CopilotAudit_CL
 | order by TimeGenerated asc
 ```
 ### 🖼️ Screenshot
-<img width="876" height="427" alt="TH23_S3_Q3" src="https://github.com/user-attachments/assets/0702ff0a-0c7b-4e96-8424-b3ff51384e55" />
+<img width="911" height="428" alt="TH23_S3_Q3" src="https://github.com/user-attachments/assets/ba2e44df-1a60-49df-ab4a-77841499cb9b" />
+
 
 ### 🛠️ Detection Recommendation
 

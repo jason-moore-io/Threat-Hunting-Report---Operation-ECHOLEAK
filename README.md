@@ -542,7 +542,6 @@ This is the **cold-tier pivot**. No network or OfficeActivity event records the 
 
 ### 🔧 KQL Query Used
 ```kql
-// Extract external URLs from Copilot responses
 CopilotAudit_CL
 | where RunId == "el--17-20260920"
 | where SessionId == "cp-emily-20261007-1042"
@@ -553,15 +552,6 @@ CopilotAudit_CL
 | where Domain !endswith "cormorantcapital.com" and Domain !endswith "sharepoint.com"
 | project TimeGenerated, Domain, URL, CopilotResponse
 | order by TimeGenerated asc
-
-// Confirmation
-CopilotAudit_CL
-| where RunId == "el--17-20260920"
-| where UserId =~ "emily.chen@cormorantcapital.com"
-| where InteractionType == "Response"
-| where TimeGenerated between (datetime(2026-09-20T10:42:30Z) .. datetime(2026-09-20T10:44:00Z))
-| where CopilotResponse has "metrics-cdn" or CopilotResponse has "analyticshub"
-| project TimeGenerated, CopilotResponse
 ```
 
 ### 🖼️ Screenshot

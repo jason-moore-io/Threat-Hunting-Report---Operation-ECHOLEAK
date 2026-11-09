@@ -443,6 +443,8 @@ CopilotAudit_CL
 | project TimeGenerated, InteractionType, UserPrompt, ToolName, ToolParameters
 | order by TimeGenerated asc
 ```
+### 🖼️ Screenshot
+<img width="877" height="422" alt="TH23_S2_Q3" src="https://github.com/user-attachments/assets/2eb45567-c8eb-465a-88c6-1332307b5632" />
 
 ### 🛠️ Detection Recommendation
 
@@ -628,6 +630,8 @@ CopilotAudit_CL
 | project TimeGenerated, SessionId, Domain, Payload, Image
 | order by TimeGenerated asc
 ```
+### 🖼️ Screenshot
+<img width="876" height="427" alt="TH23_S3_Q3" src="https://github.com/user-attachments/assets/0702ff0a-0c7b-4e96-8424-b3ff51384e55" />
 
 ### 🛠️ Detection Recommendation
 
@@ -865,6 +869,8 @@ CopilotAudit_CL
 | extend DeltaSec = datetime_diff('millisecond', TimeGenerated, prev(TimeGenerated)) / 1000.0
 | project TimeGenerated, DeltaSec, ToolParameters
 ```
+### 🖼️ Screenshot
+<img width="938" height="415" alt="TH23_S5_Q2" src="https://github.com/user-attachments/assets/0673e1f8-ac7b-4ba4-ae1c-c715cc0261da" />
 
 ### 🛠️ Detection Recommendation
 
@@ -914,6 +920,8 @@ CopilotAudit_CL
 | project TimeGenerated, InteractionType, ToolName, ToolParameters, CopilotResponse
 | order by TimeGenerated asc
 ```
+### 🖼️ Screenshot
+<img width="885" height="419" alt="TH23_S6_Q1" src="https://github.com/user-attachments/assets/7f198de6-20d7-4706-9562-c4c8ddcfb07c" />
 
 ### 🛠️ Detection Recommendation
 
@@ -957,6 +965,8 @@ CopilotAudit_CL
 | where Payload has "."   // file names only (excludes system_prompt label)
 | summarize Files = dcount(Payload)
 ```
+### 🖼️ Screenshot
+<img width="856" height="307" alt="TH23_S6_Q2" src="https://github.com/user-attachments/assets/108ff7a3-1f05-4dc1-a785-15d2793fd46e" />
 
 ### 🛠️ Detection Recommendation
 

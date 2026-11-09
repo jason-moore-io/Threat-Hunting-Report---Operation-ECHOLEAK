@@ -303,18 +303,11 @@ Everything Copilot did beyond summarising came from instructions hidden in the d
 ### 🔧 KQL Query Used
 ```kql
 CopilotAudit_CL
-| where RunId == "el--17-20260920"
+| where RunId == "cl--17-20260920"
 | where UserId =~ "emily.chen@cormorantcapital.com"
-| where InteractionType == "Prompt"
-| where TimeGenerated between (datetime(2026-09-20 10:30) .. datetime(2026-09-20 10:50))
-| project TimeGenerated, SessionId, Application, UserPrompt
-| order by TimeGenerated asc
-
-// Full hijacked session
-CopilotAudit_CL
-| where RunId == "el--17-20260920"
-| where SessionId == "cp-emily-20261007-1042"
-| project TimeGenerated, InteractionType, UserPrompt, ToolName, ToolParameters, DataSourcesAccessed, CopilotResponse
+| where InteractionType  == "ToolCall"
+| where TimeGenerated between (datetime(2026-09-20T10:42:30Z) .. datetime(2026-09-20T10:4330Z))
+| project TimeGenerated, ToolName, ToolParameters, DataSourcesAccessed, CopilotResponse,
 | order by TimeGenerated asc
 ```
 
